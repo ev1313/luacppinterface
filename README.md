@@ -1,27 +1,9 @@
 luacppinterface
 ===============
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/davidsiaw/luacppinterface?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A Simple C++ Interface to Lua 5.2 and above.
 
-[![Build Status](https://img.shields.io/travis/davidsiaw/luacppinterface.svg?branch=master)](https://travis-ci.org/davidsiaw/luacppinterface)
-[![Coverage Status](https://img.shields.io/coveralls/davidsiaw/luacppinterface.svg)](https://coveralls.io/r/davidsiaw/luacppinterface?branch=master)
-[![Issues](https://img.shields.io/github/issues/davidsiaw/luacppinterface.svg)](https://github.com/davidsiaw/luacppinterface/issues)
-[![Tag](https://img.shields.io/github/tag/davidsiaw/luacppinterface.svg)](https://github.com/davidsiaw/luacppinterface/releases)
-[![Stories in Ready](https://badge.waffle.io/davidsiaw/luacppinterface.svg?label=ready&title=Ready)](http://waffle.io/davidsiaw/luacppinterface)
-[![License](http://img.shields.io/badge/license-MIT-red.svg)](https://github.com/davidsiaw/luacppinterface/blob/master/LICENSE)
-[![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://github.com/davidsiaw/luacppinterface/wiki)
-
-Windows Build:
-[![Build status](https://ci.appveyor.com/api/projects/status/yv80am8m6d9nhjvb/branch/master?svg=true)](https://ci.appveyor.com/project/davidsiaw/luacppinterface/branch/master)
-
-
-[![Codeship Status for davidsiaw/luacppinterface](https://www.codeship.io/projects/31137300-050f-0132-6e2b-32730fef382b/status)](https://www.codeship.io/projects/30789)
-
-
 This small static library offers a very simple method of interfacing with Lua from C++ by constraining (only string and integer keys are allowed on LuaTable, a limited set of types available for functions callable from both Lua and C++) and general methods to reduce the number of surprises by as much as possible.
-
-*feel free to open issues*
 
 ## Documentation
 
@@ -31,33 +13,13 @@ You can find more information besides this readme on the [Wiki](https://github.c
 
 You need to `git clone --recursive https://github.com/davidsiaw/luacppinterface` To pull the lua dependency.
 
-## Windows build on MSVC
-
-To build luacppinterface, use the included LuaCppInterface.sln
-
-## Linux || Mac OS X with autotools installed || Windows with Cygwin
-
-`autoreconf --install && ./configure && make`
-
-## Mac OS X || iOS
-
-You can use the included XCode projects:
-- Use the luacppinterface.xcodeproj for Mac OS X.
-- Use the luacppinterface-ios.xcodeproj for iOS.
-
-## Android 
-
-You can use this library on Android as well. Simply pull this repository as a submodule into `jni/luacppinterface`, and your `ndk-build` should pick it up.
+`mkdir build && cd build`
+`cmake ..`
+`make`
 
 ## Testing
 
-LuaCppInterface comes with tests. To run them type
-
-`make check`
-
-For more information about building, please refer to .travis.yml
-
-The examples here are not at all extensive. You might want to refer to the [tests](https://github.com/davidsiaw/luacppinterface/tree/master/tests) for more examples.
+LuaCppInterface comes with tests. To run them execute them after building in the bin directory.
 
 Contents
 ========
