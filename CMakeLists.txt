@@ -21,17 +21,17 @@ endfunction(create_test)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}\\bin)
 
-include_directories(LuaCppInterface)
+include_directories(src)
 include_directories(${LUA_INCLUDE_DIR})
 
 add_library(luacppinterface STATIC 
-  LuaCppInterface/luacoroutine
-  LuaCppInterface/luareference
-  LuaCppInterface/luacppinterface
-  LuaCppInterface/luatable
-  LuaCppInterface/luafunction
-  LuaCppInterface/luaerror
-  LuaCppInterface/luastringconversion
+  src/luacoroutine
+  src/luareference
+  src/luacppinterface
+  src/luatable
+  src/luafunction
+  src/luaerror
+  src/luastringconversion
 )
 
 IF(BUILD_TESTS)
