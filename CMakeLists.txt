@@ -1,19 +1,93 @@
-cmake_minimum_required (VERSION 2.6)
+project(LuaCppInterface)
+cmake_minimum_required(VERSION 3.0)
 
-project (LuaCppInterface)
+find_package(Boost)
+find_package(Lua)
 
-include_directories("lua/src")
+function(setup_target NAME)
+  set_property(TARGET ${NAME} PROPERTY CXX_STANDARD 14)
+  set_property(TARGET ${NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
+  target_compile_options(${NAME} PRIVATE -Wall -Wextra -ggdb -O2)
+endfunction(setup_target)
 
-list( APPEND CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -g -ftest-coverage -fprofile-arcs")
+function(create_test NAME)
+  add_executable( ${NAME} tests/${NAME}.cpp )
+  setup_target( ${NAME} )
+  target_link_libraries( ${NAME} ${LUA_LIBRARIES} )
+  target_link_libraries( ${NAME} luacppinterface )
+endfunction(create_test)
 
-target_link_libraries(LuaCppInterface lua)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}\\bin)
+
+include_directories(LuaCppInterface)
+include_directories(${LUA_INCLUDE_DIR})
 
 add_library(luacppinterface STATIC 
-	LuaCppInterface/luacoroutine.cpp
-	LuaCppInterface/luareference.cpp
-	LuaCppInterface/luacppinterface.cpp
-	LuaCppInterface/luatable.cpp
-	LuaCppInterface/luafunction.cpp
-	LuaCppInterface/luaerror.cpp
-	LuaCppInterface/luastringconversion.cpp
+  LuaCppInterface/luacoroutine
+  LuaCppInterface/luareference
+  LuaCppInterface/luacppinterface
+  LuaCppInterface/luatable
+  LuaCppInterface/luafunction
+  LuaCppInterface/luaerror
+  LuaCppInterface/luastringconversion
 )
+
+set(TEST_NAMES
+  demonstration1
+  demonstration2
+  demonstration3
+  demonstration4
+  luacpp
+  testcallabletable
+  testchartowideconvert
+  testcoroutineexception
+  testcoroutineexpectedbutnot
+  testcreate
+  testctoluafunction
+  testexceptioninluafunction
+  testextractingasfunctionbutistable
+  testfunction
+  testfunctionerror
+  testfunctionexpectedbutnotcallable
+  testfunctionparams
+  testfunctionparamsreturn
+  testfunctionreturn
+  testgetmetatableonclosedstate
+  testgetsetfunction2
+  testgetsetfunction
+  testgetsetinsidetable
+  testgetsetinteger
+  testgetsetstring
+  testgetsettable
+  testgetstate
+  testgettypeofvalueat
+  testinvalidscript
+  testpassingfunction
+  testreadinglightuserdatafromuserdata
+  testregistry
+  testresumenoscript
+  testreturnfromnative
+  testreturnfromscript
+  testreturnfromyieldingfunction
+  testreturntablefromlua
+  testreturntablefromnative
+  testscriptexception
+  testsetstring
+  testsetwstring
+  testtable
+  testtableexpectedbutnotable
+  testtableforeachintegerkey
+  testtableforeachstringkey
+  testtypeintstringmorph
+  testtypemorphintwstring
+  testtypestringintmorph
+  testuserdataconstructor
+  testuserdata
+  testuserdatadispose
+  testuserdatamethod
+  testwidetocharconvert
+)
+
+foreach( TEST_NAME ${TEST_NAMES} )
+  create_test(${TEST_NAME})
+endforeach( TEST_NAME ${TEST_NAMES} )

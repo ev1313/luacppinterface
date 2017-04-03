@@ -1,7 +1,6 @@
 #ifndef LUACPPINCLUDE
 #define LUACPPINCLUDE
 
-
 extern "C" {
 #include "lua.h"
 #include "lualib.h"
