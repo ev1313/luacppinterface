@@ -4,6 +4,8 @@ cmake_minimum_required(VERSION 3.0)
 find_package(Boost)
 find_package(Lua)
 
+option(BUILD_TESTS "build tests" OFF)
+
 function(setup_target NAME)
   set_property(TARGET ${NAME} PROPERTY CXX_STANDARD 14)
   set_property(TARGET ${NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
@@ -31,6 +33,8 @@ add_library(luacppinterface STATIC
   LuaCppInterface/luaerror
   LuaCppInterface/luastringconversion
 )
+
+IF(BUILD_TESTS)
 
 set(TEST_NAMES
   demonstration1
@@ -91,3 +95,5 @@ set(TEST_NAMES
 foreach( TEST_NAME ${TEST_NAMES} )
   create_test(${TEST_NAME})
 endforeach( TEST_NAME ${TEST_NAMES} )
+
+ENDIF(BUILD_TESTS)
