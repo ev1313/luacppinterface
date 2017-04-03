@@ -30,6 +30,7 @@ int main()
 
 	auto absolute = lua.CreateFunction<int(int)>((int(*)(int))abs);
 	int magnitude = absolute.Invoke(-5);
+	ss << "magnitude: " << magnitude;
 
 	auto afunc = lua.CreateFunction<void()>([&]()
 	{
@@ -44,25 +45,25 @@ int main()
 	auto afunc3 = lua.CreateFunction<void()>(fun);
 	afunc3.Invoke();
 
-	auto t = lua.CreateFunction<void(int)>([&](int a)
+	auto t = lua.CreateFunction<void(int)>([&](int)
 	{
 	});
 
 	t.Invoke(5);
 	
-	auto t1 = lua.CreateFunction<void(std::string)>([&](std::string a)
+	auto t1 = lua.CreateFunction<void(std::string)>([&](std::string)
 	{
 	});
 
 	t1.Invoke("meow");
 
-	auto t2 = lua.CreateFunction<void(int,std::string)>([&](int a, std::string)
+	auto t2 = lua.CreateFunction<void(int,std::string)>([&](int, std::string)
 	{
 	});
 
 	t2.Invoke(5,"a");
 
-	auto t3 = lua.CreateFunction<int(int,std::string)>([&](int a, std::string) -> int
+	auto t3 = lua.CreateFunction<int(int,std::string)>([&](int, std::string) -> int
 	{
 		return 10;
 	});
@@ -118,6 +119,7 @@ int main()
 
 	auto result = meow.Invoke(params);
 	int big = result.Get<int>("big");
+	ss << "big: " << big;
 
 	auto onetwofour = global.Get< LuaFunction<int()> >("onetwofour");
 	int res = onetwofour.Invoke();

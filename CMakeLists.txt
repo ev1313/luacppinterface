@@ -1,8 +1,7 @@
 project(LuaCppInterface)
 cmake_minimum_required(VERSION 3.0)
 
-find_package(Boost)
-find_package(Lua)
+find_package(Lua REQUIRED)
 
 option(BUILD_TESTS "build tests" OFF)
 

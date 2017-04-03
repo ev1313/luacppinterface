@@ -16,7 +16,7 @@ int main()
 	}
 
 	std::cout << "Expect: ";
-	for (int i=0;i<utf8str.size();i++)
+	for (unsigned int i=0;i<utf8str.size();i++)
 	{
 		std::cout << (unsigned int)(uint8_t)utf8str[i] << " ";
 	}
@@ -24,7 +24,7 @@ int main()
 	std::cout << std::endl;
 
 	std::cout << "Result: ";
-	for (int i=0;i<conv.size();i++)
+	for (unsigned int i=0;i<conv.size();i++)
 	{
 		std::cout << (unsigned int)(uint8_t)conv[i] << " ";
 	}

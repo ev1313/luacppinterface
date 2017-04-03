@@ -130,8 +130,6 @@ struct pusher<wchar_t[N]>
 	}
 };
 
-#pragma warning(disable: 4244)
-
 // strings!
 DEFINE_TYPE_TEMPLATE_FOR(const char*,, lua_pushstring(state.get(), param), const char* res = lua_tostring(state.get(), -1))
 DEFINE_TYPE_TEMPLATE_FOR(char*,, lua_pushstring(state.get(), param), char* res = (char*)lua_tostring(state.get(), -1))
@@ -164,7 +162,5 @@ DEFINE_TYPE_TEMPLATE_FOR(float,, lua_pushnumber(state.get(), param), float res =
 DEFINE_TYPE_TEMPLATE_FOR(double,, lua_pushnumber(state.get(), param), double res = lua_tonumber(state.get(), -1))
 
 DEFINE_TYPE_TEMPLATE_FOR(bool,, lua_pushboolean(state.get(), param), bool res = lua_toboolean(state.get(), -1) != 0)
-
-#pragma warning(default: 4244)
 
 #endif // LUATYPETEMPLATES_H
