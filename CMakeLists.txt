@@ -1,4 +1,4 @@
-project(LuaCppInterface)
+project(LuaCppInterface CXX)
 cmake_minimum_required(VERSION 3.0)
 
 find_package(Lua REQUIRED)
@@ -32,6 +32,7 @@ add_library(luacppinterface STATIC
   src/luaerror
   src/luastringconversion
 )
+setup_target(luacppinterface)
 
 IF(BUILD_TESTS)
 
